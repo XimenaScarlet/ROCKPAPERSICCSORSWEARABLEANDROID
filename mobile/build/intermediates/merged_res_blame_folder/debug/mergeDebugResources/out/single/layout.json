@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "C:\\Users\\scarl\\.gradle\\daemon\\9.0-milestone-1\\com.example.wearcontroldemo.mobile-mergeDebugResources-32:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\scarl\\.gradle\\daemon\\9.0-milestone-1\\com.example.wearcontroldemo.mobile-main-35:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "com.example.wearcontroldemo.mobile-mergeDebugResources-32:/layout/activity_main.xml",
+        "source": "com.example.wearcontroldemo.mobile-main-35:/layout/activity_main.xml"
+    }
+]

@@ -1,0 +1,24 @@
+R_DEF: Internal format may change without notice
+local
+drawable bg_menu_gradient
+drawable rounded_button
+drawable rounded_button_dark
+id btnBackSettings
+id btnPaper
+id btnPlay
+id btnReset
+id btnRock
+id btnScissors
+id btnSettings
+id btnTheme
+id gameLayout
+id menuButtonsContainer
+id menuLayout
+id rootLayout
+id settingsLayout
+id txtMenuSubtitle
+id txtMenuTitle
+id txtStatus
+id txtTitle
+layout activity_main
+style Theme.MaterialComponents.DayNight.NoActionBar

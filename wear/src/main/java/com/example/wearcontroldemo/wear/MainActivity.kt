@@ -13,6 +13,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.luminance
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.*
 import com.google.android.gms.wearable.MessageClient
@@ -31,25 +32,33 @@ class MainActivity : ComponentActivity(), MessageClient.OnMessageReceivedListene
     private val currentScreenState = mutableStateOf(Screen.MENU)
     private val backgroundColorState = mutableStateOf(Color(0xFF121212))
 
+    // Detecta si un color es oscuro
+    private fun Color.isDark() = this.luminance() < 0.5f
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            MaterialTheme {
-                val status by statusState
-                val showReset by showResetState
-                val buttonsEnabled by buttonsEnabledState
-                val currentScreen by currentScreenState
-                val bgColor by backgroundColorState
+            val status by statusState
+            val showReset by showResetState
+            val buttonsEnabled by buttonsEnabledState
+            val currentScreen by currentScreenState
+            val bgColor by backgroundColorState
 
+            val textColor = if (bgColor.isDark()) Color.White else Color.Black
+            val iconColor = textColor
+
+            MaterialTheme {
                 Box(
-                    modifier = Modifier
+                    Modifier
                         .fillMaxSize()
                         .background(bgColor)
                 ) {
                     when (currentScreen) {
 
                         Screen.MENU -> MenuScreen(
+                            textColor,
+                            iconColor,
                             onPlay = {
                                 resetAll()
                                 currentScreenState.value = Screen.GAME
@@ -58,21 +67,30 @@ class MainActivity : ComponentActivity(), MessageClient.OnMessageReceivedListene
                         )
 
                         Screen.GAME -> GameScreen(
-                            status = status,
-                            showReset = showReset,
-                            buttonsEnabled = buttonsEnabled,
+                            status,
+                            showReset,
+                            buttonsEnabled,
+                            textColor,
+                            iconColor,
                             onChoose = { choose(it) },
-                            onPlayAgain = { resetAll() },
+                            onPlayAgain = {
+                                resetAll()
+                                currentScreenState.value = Screen.GAME
+                            },
                             onBack = { currentScreenState.value = Screen.MENU }
                         )
 
                         Screen.SETTINGS -> SettingsScreen(
+                            textColor,
+                            iconColor,
                             onTema = { currentScreenState.value = Screen.THEME },
                             onBack = { currentScreenState.value = Screen.MENU }
                         )
 
                         Screen.THEME -> ThemeScreen(
                             currentColor = bgColor,
+                            textColor = textColor,
+                            iconColor = iconColor,
                             onColorSelected = { backgroundColorState.value = it },
                             onBack = { currentScreenState.value = Screen.SETTINGS }
                         )
@@ -82,126 +100,123 @@ class MainActivity : ComponentActivity(), MessageClient.OnMessageReceivedListene
         }
     }
 
-    // -------------------------------------------------------------------
-    // MENÚ PRINCIPAL
-    // -------------------------------------------------------------------
+    // ---------------- MENÚ ----------------
 
     @Composable
-    private fun MenuScreen(onPlay: () -> Unit, onSettings: () -> Unit) {
+    private fun MenuScreen(
+        textColor: Color,
+        iconColor: Color,
+        onPlay: () -> Unit,
+        onSettings: () -> Unit
+    ) {
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(10.dp),
+            Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
 
-            Text("Piedra · Papel · Tijera", color = Color.White)
+            Text("Piedra · Papel · Tijera", color = textColor)
 
-            Spacer(modifier = Modifier.height(10.dp))
+            Spacer(Modifier.height(10.dp))
 
-            Row(horizontalArrangement = Arrangement.spacedBy(18.dp)) {
-                IconButtonCircle(onClick = onPlay) {
-                    Icon(Icons.Default.PlayArrow, contentDescription = "Jugar")
+            Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                IconButtonCircle(onPlay, iconColor) {
+                    Icon(Icons.Default.PlayArrow, contentDescription = "Jugar", tint = iconColor)
                 }
-                IconButtonCircle(onClick = onSettings) {
-                    Icon(Icons.Default.Settings, contentDescription = "Configuración")
+                IconButtonCircle(onSettings, iconColor) {
+                    Icon(Icons.Default.Settings, contentDescription = "Configuración", tint = iconColor)
                 }
             }
         }
     }
 
     @Composable
-    private fun IconButtonCircle(onClick: () -> Unit, icon: @Composable () -> Unit) {
+    private fun IconButtonCircle(
+        onClick: () -> Unit,
+        iconColor: Color,
+        icon: @Composable () -> Unit
+    ) {
         Button(
-            onClick = onClick,
-            modifier = Modifier.size(52.dp),
+            onClick,
+            Modifier.size(52.dp),
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = Color(0xFFEAEAEA),
-                contentColor = Color.Black
+                contentColor = iconColor
             )
-        ) {
-            icon()
-        }
+        ) { icon() }
     }
 
-    // -------------------------------------------------------------------
-    // GAME SCREEN
-    // -------------------------------------------------------------------
+    // ---------------- GAME ----------------
 
     @Composable
     private fun GameScreen(
         status: String,
         showReset: Boolean,
         buttonsEnabled: Boolean,
+        textColor: Color,
+        iconColor: Color,
         onChoose: (String) -> Unit,
         onPlayAgain: () -> Unit,
         onBack: () -> Unit
     ) {
-
         Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(12.dp),
+            Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
 
-            Text("Piedra · Papel · Tijera", color = Color.White)
+            Text("Piedra · Papel · Tijera", color = textColor)
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(Modifier.height(12.dp))
 
-            // 🔹 Solo mostramos los botones de jugada mientras no haya ganador
+            // ⭐ Botones SOLO si NO hay ganador
             if (!showReset) {
                 Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                    RpsButton(buttonsEnabled, { onChoose("ROCK") }) {
-                        Icon(Icons.Default.SportsMma, contentDescription = "Piedra")
+                    RpsButton(buttonsEnabled, { onChoose("ROCK") }, iconColor) {
+                        Icon(Icons.Default.SportsMma, contentDescription = "Piedra", tint = iconColor)
                     }
-                    RpsButton(buttonsEnabled, { onChoose("PAPER") }) {
-                        Icon(Icons.Default.Description, contentDescription = "Papel")
+                    RpsButton(buttonsEnabled, { onChoose("PAPER") }, iconColor) {
+                        Icon(Icons.Default.Description, contentDescription = "Papel", tint = iconColor)
                     }
-                    RpsButton(buttonsEnabled, { onChoose("SCISSORS") }) {
-                        Icon(Icons.Default.ContentCut, contentDescription = "Tijera")
+                    RpsButton(buttonsEnabled, { onChoose("SCISSORS") }, iconColor) {
+                        Icon(Icons.Default.ContentCut, contentDescription = "Tijera", tint = iconColor)
                     }
                 }
-
-                Spacer(modifier = Modifier.height(10.dp))
             }
 
-            // Mensaje de estado
-            if (status == "Enviado...") {
-                Text(
-                    status,
-                    color = Color.White,
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
-                )
-            } else if (status.isNotEmpty()) {
-                Text(status, color = Color.White)
-            }
+            Spacer(Modifier.height(10.dp))
 
-            // Cuando hay ganador: solo botón "Jugar de nuevo" con ícono de play
+            if (status.isNotEmpty())
+                Text(status, color = textColor)
+
+            Spacer(Modifier.height(10.dp))
+
+            // ⭐ ESTADO DE GANADOR → Solo mostrar PLAY
             if (showReset) {
-                Spacer(modifier = Modifier.height(10.dp))
-                Button(onClick = onPlayAgain) {
-                    Icon(Icons.Default.PlayArrow, contentDescription = "Jugar de nuevo")
-                    Spacer(modifier = Modifier.width(4.dp))
-                    Text("Jugar de nuevo")
-                }
-            }
-
-            Spacer(modifier = Modifier.height(10.dp))
-
-            // Botón Atrás SOLO cuando NO hay ganador
-            if (!showReset) {
                 Button(
-                    onClick = onBack,
-                    modifier = Modifier.size(40.dp),
+                    onClick = onPlayAgain,
+                    modifier = Modifier.size(54.dp),
                     colors = ButtonDefaults.buttonColors(
                         backgroundColor = Color(0xFFEAEAEA),
-                        contentColor = Color.Black
+                        contentColor = iconColor
                     )
                 ) {
-                    Icon(Icons.Default.ArrowBack, contentDescription = "Atrás")
+                    Icon(Icons.Default.PlayArrow, contentDescription = "Play", tint = iconColor)
+                }
+            }
+
+            // ⭐ IMPORTANTE: NO hay botón de regresar en ganador
+            if (!showReset) {
+                Spacer(Modifier.height(14.dp))
+                Button(
+                    onClick = onBack,
+                    modifier = Modifier.size(42.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor = Color(0xFFEAEAEA),
+                        contentColor = iconColor
+                    )
+                ) {
+                    Icon(Icons.Default.ArrowBack, contentDescription = "Atrás", tint = iconColor)
                 }
             }
         }
@@ -211,72 +226,90 @@ class MainActivity : ComponentActivity(), MessageClient.OnMessageReceivedListene
     private fun RpsButton(
         enabled: Boolean,
         onClick: () -> Unit,
+        iconColor: Color,
         icon: @Composable () -> Unit
     ) {
         Button(
-            onClick = onClick,
+            onClick,
             enabled = enabled,
             modifier = Modifier.size(52.dp),
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = Color(0xFFEAEAEA),
-                contentColor = Color.Black
+                contentColor = iconColor
             )
         ) { icon() }
     }
 
-    // -------------------------------------------------------------------
-    // SETTINGS
-    // -------------------------------------------------------------------
+    // ---------------- SETTINGS ----------------
 
     @Composable
-    private fun SettingsScreen(onTema: () -> Unit, onBack: () -> Unit) {
+    private fun SettingsScreen(
+        textColor: Color,
+        iconColor: Color,
+        onTema: () -> Unit,
+        onBack: () -> Unit
+    ) {
         Column(
-            modifier = Modifier.fillMaxSize(),
+            Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            Text("Configuración", color = Color.White)
 
-            Spacer(modifier = Modifier.height(10.dp))
+            Text("Configuración", color = textColor)
 
-            Button(onClick = onTema) { Text("Tema") }
+            Spacer(Modifier.height(14.dp))
 
-            Spacer(modifier = Modifier.height(10.dp))
+            Button(onClick = onTema) {
+                Text("Tema", color = textColor)
+            }
 
-            Button(onClick = onBack) { Text("Volver") }
+            Spacer(Modifier.height(14.dp))
+
+            // Flecha (sí está en ajustes)
+            Button(
+                onClick = onBack,
+                modifier = Modifier.size(46.dp),
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = Color(0xFFEAEAEA),
+                    contentColor = iconColor
+                )
+            ) {
+                Icon(Icons.Default.ArrowBack, contentDescription = "Atrás", tint = iconColor)
+            }
         }
     }
 
-    // -------------------------------------------------------------------
-    // THEME SCREEN (scroll infinito)
-    // -------------------------------------------------------------------
+    // ---------------- THEME SCREEN ----------------
 
     @Composable
     private fun ThemeScreen(
         currentColor: Color,
+        textColor: Color,
+        iconColor: Color,
         onColorSelected: (Color) -> Unit,
         onBack: () -> Unit
     ) {
         val baseColors = listOf(
             Color(0xFF121212),
-            Color(0xFF512DA8),
-            Color(0xFF0D47A1),
-            Color(0xFF1B5E20),
-            Color(0xFFB71C1C),
-            Color(0xFFF57F17)
+            Color(0xFFF1F1F1),
+            Color(0xFF80D0FF),
+            Color(0xFF03DAC5),
+            Color(0xFF2196F3),
+            Color(0xFFF44336)
         )
 
         val infiniteList = remember { List(20) { baseColors }.flatten() }
-        val listState = rememberLazyListState(initialFirstVisibleItemIndex = 60)
+        val listState = rememberLazyListState(initialFirstVisibleItemIndex = 50)
 
         Column(
-            modifier = Modifier.fillMaxSize(),
+            Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
 
-            Text("Tema", color = Color.White)
-            Spacer(modifier = Modifier.height(12.dp))
+            Text("Tema", color = textColor)
+
+            Spacer(Modifier.height(12.dp))
 
             LazyRow(
                 state = listState,
@@ -284,26 +317,32 @@ class MainActivity : ComponentActivity(), MessageClient.OnMessageReceivedListene
             ) {
                 items(infiniteList.size) { i ->
                     val c = infiniteList[i]
-
                     Button(
                         onClick = { onColorSelected(c) },
-                        modifier = Modifier.size(40.dp),
+                        modifier = Modifier.size(42.dp),
                         colors = ButtonDefaults.buttonColors(backgroundColor = c)
                     ) {
-                        if (c == currentColor) Text("✓")
+                        if (c == currentColor) Text("✓", color = textColor)
                     }
                 }
             }
 
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(Modifier.height(16.dp))
 
-            Button(onClick = onBack) { Text("Volver") }
+            Button(
+                onClick = onBack,
+                modifier = Modifier.size(46.dp),
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = Color(0xFFEAEAEA),
+                    contentColor = iconColor
+                )
+            ) {
+                Icon(Icons.Default.ArrowBack, contentDescription = "Atrás", tint = iconColor)
+            }
         }
     }
 
-    // -------------------------------------------------------------------
-    // COMUNICACIÓN WATCH → PHONE
-    // -------------------------------------------------------------------
+    // ---------------- COMUNICACIÓN ----------------
 
     private fun send(msg: String) {
         CoroutineScope(Dispatchers.IO).launch {
@@ -317,10 +356,11 @@ class MainActivity : ComponentActivity(), MessageClient.OnMessageReceivedListene
 
     private fun choose(c: String) {
         if (!buttonsEnabledState.value) return
-
         buttonsEnabledState.value = false
+
         statusState.value = "Enviado..."
         showResetState.value = false
+
         send("RPS:WATCH:$c")
     }
 
@@ -343,24 +383,26 @@ class MainActivity : ComponentActivity(), MessageClient.OnMessageReceivedListene
 
     override fun onMessageReceived(event: MessageEvent) {
         if (event.path != "/cmd") return
-        val cmd = String(event.data)
 
-        runOnUiThread {
-            when (cmd) {
-                "RPS:RESULT:PHONE" -> {
+        when (val cmd = String(event.data)) {
+            "RPS:RESULT:PHONE" -> {
+                runOnUiThread {
                     statusState.value = "Ganador: Teléfono"
                     showResetState.value = true
                 }
-                "RPS:RESULT:WATCH" -> {
+            }
+            "RPS:RESULT:WATCH" -> {
+                runOnUiThread {
                     statusState.value = "Ganador: Reloj"
                     showResetState.value = true
                 }
-                "RPS:RESULT:DRAW" -> {
-                    statusState.value = "Ganador: Empate"
+            }
+            "RPS:RESULT:DRAW" -> {
+                runOnUiThread {
+                    statusState.value = "Empate"
                     showResetState.value = true
                 }
             }
         }
     }
 }
-

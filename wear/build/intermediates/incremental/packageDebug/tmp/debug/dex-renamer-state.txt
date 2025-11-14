@@ -1,8 +1,8 @@
-#Wed Nov 12 21:33:04 CST 2025
-base.0=C\:\\Users\\scarl\\Downloads\\Nueva carpeta\\SIFUNCIONA_RPS_winner_on_watch_v2\\SIFUNCIONA_RPS_winner_on_watch_final\\SIFUNCIONA_RPS_final_clean_v2_fixWatchSend\\wear\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
-base.1=C\:\\Users\\scarl\\Downloads\\Nueva carpeta\\SIFUNCIONA_RPS_winner_on_watch_v2\\SIFUNCIONA_RPS_winner_on_watch_final\\SIFUNCIONA_RPS_final_clean_v2_fixWatchSend\\wear\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
-base.2=C\:\\Users\\scarl\\Downloads\\Nueva carpeta\\SIFUNCIONA_RPS_winner_on_watch_v2\\SIFUNCIONA_RPS_winner_on_watch_final\\SIFUNCIONA_RPS_final_clean_v2_fixWatchSend\\wear\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
-base.3=C\:\\Users\\scarl\\Downloads\\Nueva carpeta\\SIFUNCIONA_RPS_winner_on_watch_v2\\SIFUNCIONA_RPS_winner_on_watch_final\\SIFUNCIONA_RPS_final_clean_v2_fixWatchSend\\wear\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+#Thu Nov 13 19:04:08 CST 2025
+base.0=C\:\\Users\\scarl\\Downloads\\RPS_Wear_Bluetooth_Real\\ROCKPAPERSICCSORSWEARABLEANDROID\\wear\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=C\:\\Users\\scarl\\Downloads\\RPS_Wear_Bluetooth_Real\\ROCKPAPERSICCSORSWEARABLEANDROID\\wear\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.2=C\:\\Users\\scarl\\Downloads\\RPS_Wear_Bluetooth_Real\\ROCKPAPERSICCSORSWEARABLEANDROID\\wear\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\6\\classes.dex
+base.3=C\:\\Users\\scarl\\Downloads\\RPS_Wear_Bluetooth_Real\\ROCKPAPERSICCSORSWEARABLEANDROID\\wear\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=6/classes.dex

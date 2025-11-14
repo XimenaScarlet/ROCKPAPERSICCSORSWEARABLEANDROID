@@ -1,0 +1,5 @@
+com.example.wearcontroldemo.wear.test.wear-androidTest-0 C:\Users\scarl\Downloads\RPS_Wear_Bluetooth_Real\ROCKPAPERSICCSORSWEARABLEANDROID\wear\build\generated\res\resValues\androidTest\debug
+com.example.wearcontroldemo.wear.test.wear-updated_navigation_xml-1 C:\Users\scarl\Downloads\RPS_Wear_Bluetooth_Real\ROCKPAPERSICCSORSWEARABLEANDROID\wear\build\generated\updated_navigation_xml\debugAndroidTest
+com.example.wearcontroldemo.wear.test.wear-mergeDebugAndroidTestResources-2 C:\Users\scarl\Downloads\RPS_Wear_Bluetooth_Real\ROCKPAPERSICCSORSWEARABLEANDROID\wear\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.example.wearcontroldemo.wear.test.wear-mergeDebugAndroidTestResources-3 C:\Users\scarl\Downloads\RPS_Wear_Bluetooth_Real\ROCKPAPERSICCSORSWEARABLEANDROID\wear\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.example.wearcontroldemo.wear.test.wear-debugAndroidTest-4 C:\Users\scarl\Downloads\RPS_Wear_Bluetooth_Real\ROCKPAPERSICCSORSWEARABLEANDROID\wear\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources

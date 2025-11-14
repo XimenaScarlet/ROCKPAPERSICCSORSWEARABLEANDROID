@@ -3136,14 +3136,11 @@ id beginning
 id blocking
 id bottom
 id bounce
-id btnBackSettings
 id btnPaper
 id btnPlay
 id btnReset
 id btnRock
 id btnScissors
-id btnSettings
-id btnTheme
 id buttonPanel
 id cancel_button
 id center
@@ -3418,7 +3415,6 @@ id search_voice_btn
 id select_dialog_listview
 id selected
 id selection_type
-id settingsLayout
 id shortcut
 id showCustom
 id showHome

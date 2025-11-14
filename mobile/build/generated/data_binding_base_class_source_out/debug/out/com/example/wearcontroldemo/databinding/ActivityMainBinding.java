@@ -21,9 +21,6 @@ public final class ActivityMainBinding implements ViewBinding {
   private final LinearLayout rootView;
 
   @NonNull
-  public final Button btnBackSettings;
-
-  @NonNull
   public final Button btnPaper;
 
   @NonNull
@@ -39,12 +36,6 @@ public final class ActivityMainBinding implements ViewBinding {
   public final Button btnScissors;
 
   @NonNull
-  public final Button btnSettings;
-
-  @NonNull
-  public final Button btnTheme;
-
-  @NonNull
   public final LinearLayout gameLayout;
 
   @NonNull
@@ -55,9 +46,6 @@ public final class ActivityMainBinding implements ViewBinding {
 
   @NonNull
   public final LinearLayout rootLayout;
-
-  @NonNull
-  public final LinearLayout settingsLayout;
 
   @NonNull
   public final TextView txtMenuSubtitle;
@@ -71,28 +59,22 @@ public final class ActivityMainBinding implements ViewBinding {
   @NonNull
   public final TextView txtTitle;
 
-  private ActivityMainBinding(@NonNull LinearLayout rootView, @NonNull Button btnBackSettings,
-      @NonNull Button btnPaper, @NonNull Button btnPlay, @NonNull Button btnReset,
-      @NonNull Button btnRock, @NonNull Button btnScissors, @NonNull Button btnSettings,
-      @NonNull Button btnTheme, @NonNull LinearLayout gameLayout,
+  private ActivityMainBinding(@NonNull LinearLayout rootView, @NonNull Button btnPaper,
+      @NonNull Button btnPlay, @NonNull Button btnReset, @NonNull Button btnRock,
+      @NonNull Button btnScissors, @NonNull LinearLayout gameLayout,
       @NonNull LinearLayout menuButtonsContainer, @NonNull LinearLayout menuLayout,
-      @NonNull LinearLayout rootLayout, @NonNull LinearLayout settingsLayout,
-      @NonNull TextView txtMenuSubtitle, @NonNull TextView txtMenuTitle,
-      @NonNull TextView txtStatus, @NonNull TextView txtTitle) {
+      @NonNull LinearLayout rootLayout, @NonNull TextView txtMenuSubtitle,
+      @NonNull TextView txtMenuTitle, @NonNull TextView txtStatus, @NonNull TextView txtTitle) {
     this.rootView = rootView;
-    this.btnBackSettings = btnBackSettings;
     this.btnPaper = btnPaper;
     this.btnPlay = btnPlay;
     this.btnReset = btnReset;
     this.btnRock = btnRock;
     this.btnScissors = btnScissors;
-    this.btnSettings = btnSettings;
-    this.btnTheme = btnTheme;
     this.gameLayout = gameLayout;
     this.menuButtonsContainer = menuButtonsContainer;
     this.menuLayout = menuLayout;
     this.rootLayout = rootLayout;
-    this.settingsLayout = settingsLayout;
     this.txtMenuSubtitle = txtMenuSubtitle;
     this.txtMenuTitle = txtMenuTitle;
     this.txtStatus = txtStatus;
@@ -126,12 +108,6 @@ public final class ActivityMainBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
-      id = R.id.btnBackSettings;
-      Button btnBackSettings = ViewBindings.findChildViewById(rootView, id);
-      if (btnBackSettings == null) {
-        break missingId;
-      }
-
       id = R.id.btnPaper;
       Button btnPaper = ViewBindings.findChildViewById(rootView, id);
       if (btnPaper == null) {
@@ -162,18 +138,6 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.btnSettings;
-      Button btnSettings = ViewBindings.findChildViewById(rootView, id);
-      if (btnSettings == null) {
-        break missingId;
-      }
-
-      id = R.id.btnTheme;
-      Button btnTheme = ViewBindings.findChildViewById(rootView, id);
-      if (btnTheme == null) {
-        break missingId;
-      }
-
       id = R.id.gameLayout;
       LinearLayout gameLayout = ViewBindings.findChildViewById(rootView, id);
       if (gameLayout == null) {
@@ -193,12 +157,6 @@ public final class ActivityMainBinding implements ViewBinding {
       }
 
       LinearLayout rootLayout = (LinearLayout) rootView;
-
-      id = R.id.settingsLayout;
-      LinearLayout settingsLayout = ViewBindings.findChildViewById(rootView, id);
-      if (settingsLayout == null) {
-        break missingId;
-      }
 
       id = R.id.txtMenuSubtitle;
       TextView txtMenuSubtitle = ViewBindings.findChildViewById(rootView, id);
@@ -224,10 +182,9 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
-      return new ActivityMainBinding((LinearLayout) rootView, btnBackSettings, btnPaper, btnPlay,
-          btnReset, btnRock, btnScissors, btnSettings, btnTheme, gameLayout, menuButtonsContainer,
-          menuLayout, rootLayout, settingsLayout, txtMenuSubtitle, txtMenuTitle, txtStatus,
-          txtTitle);
+      return new ActivityMainBinding((LinearLayout) rootView, btnPaper, btnPlay, btnReset, btnRock,
+          btnScissors, gameLayout, menuButtonsContainer, menuLayout, rootLayout, txtMenuSubtitle,
+          txtMenuTitle, txtStatus, txtTitle);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

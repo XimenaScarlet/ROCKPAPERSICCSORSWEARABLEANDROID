@@ -1,6 +1,5 @@
 package com.example.wearcontroldemo
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -28,46 +27,23 @@ class MainActivity : ComponentActivity(), MessageClient.OnMessageReceivedListene
     private lateinit var txtTitle: TextView
     private lateinit var txtStatus: TextView
 
-    // Menú / Config
+    // Menú
     private lateinit var rootLayout: LinearLayout
     private lateinit var menuLayout: View
     private lateinit var gameLayout: View
-    private lateinit var settingsLayout: View
-
     private lateinit var btnPlay: Button
-    private lateinit var btnSettings: Button
-    private lateinit var btnTheme: Button
-    private lateinit var btnBackSettings: Button
-
-    private val themeColors = listOf(
-        Color.parseColor("#303030"),
-        Color.parseColor("#4A148C"),
-        Color.parseColor("#0D47A1"),
-        Color.parseColor("#1B5E20"),
-        Color.parseColor("#B71C1C"),
-        Color.parseColor("#F57F17")
-    )
-    private var themeIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // Root para tema
+        // Root y layouts
         rootLayout = findViewById(R.id.rootLayout)
-
-        // Layouts
         menuLayout = findViewById(R.id.menuLayout)
         gameLayout = findViewById(R.id.gameLayout)
-        settingsLayout = findViewById(R.id.settingsLayout)
 
         // Menú
         btnPlay = findViewById(R.id.btnPlay)
-        btnSettings = findViewById(R.id.btnSettings)
-
-        // Configuración
-        btnTheme = findViewById(R.id.btnTheme)
-        btnBackSettings = findViewById(R.id.btnBackSettings)
 
         // Juego
         txtTitle = findViewById(R.id.txtTitle)
@@ -77,34 +53,23 @@ class MainActivity : ComponentActivity(), MessageClient.OnMessageReceivedListene
         btnScissors = findViewById(R.id.btnScissors)
         btnReset = findViewById(R.id.btnReset)
 
-        // Listeners menú
+        // Menú
         btnPlay.setOnClickListener {
             showGame()
             resetState()
         }
-        btnSettings.setOnClickListener {
-            showSettings()
-        }
 
-        // Listeners configuración
-        btnTheme.setOnClickListener {
-            changeTheme()
-        }
-        btnBackSettings.setOnClickListener {
-            showMenu()
-        }
-
-        // Listeners juego
+        // Juego
         btnRock.setOnClickListener { pick("ROCK") }
         btnPaper.setOnClickListener { pick("PAPER") }
         btnScissors.setOnClickListener { pick("SCISSORS") }
 
         btnReset.setOnClickListener {
             resetState()
+            showMenu()   // al terminar una ronda regresa al menú
         }
 
-        // Estado inicial: menú y primer tema
-        applyTheme()
+        // Estado inicial
         showMenu()
         resetState()
     }
@@ -124,30 +89,11 @@ class MainActivity : ComponentActivity(), MessageClient.OnMessageReceivedListene
     private fun showMenu() {
         menuLayout.visibility = View.VISIBLE
         gameLayout.visibility = View.GONE
-        settingsLayout.visibility = View.GONE
     }
 
     private fun showGame() {
         menuLayout.visibility = View.GONE
         gameLayout.visibility = View.VISIBLE
-        settingsLayout.visibility = View.GONE
-    }
-
-    private fun showSettings() {
-        menuLayout.visibility = View.GONE
-        gameLayout.visibility = View.GONE
-        settingsLayout.visibility = View.VISIBLE
-    }
-
-    // ---------- Tema ----------
-
-    private fun changeTheme() {
-        themeIndex = (themeIndex + 1) % themeColors.size
-        applyTheme()
-    }
-
-    private fun applyTheme() {
-        rootLayout.setBackgroundColor(themeColors[themeIndex])
     }
 
     // ---------- Juego y comunicación con el reloj ----------
@@ -155,7 +101,6 @@ class MainActivity : ComponentActivity(), MessageClient.OnMessageReceivedListene
     private fun pick(choice: String) {
         phoneChoice = choice
         txtStatus.text = "Calculando ganador…"
-        // Se envía la jugada al reloj (por si se quiere usar allá)
         sendToWear("RPS:PHONE:$choice")
         recompute()
     }
@@ -183,7 +128,7 @@ class MainActivity : ComponentActivity(), MessageClient.OnMessageReceivedListene
                 runOnUiThread {
                     watchChoice = choice
                     txtStatus.text = "Ahora elige en el teléfono…"
-                    showGame()              // por si estás en el menú / config
+                    showGame()
                     setButtonsEnabled(true)
                     recompute()
                 }

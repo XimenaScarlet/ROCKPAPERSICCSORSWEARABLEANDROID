@@ -20,35 +20,35 @@
 15-->[androidx.core:core:1.13.1] C:\Users\scarl\.gradle\caches\9.0-milestone-1\transforms\43b9c409b055caeab78fdd2d5963c277\transformed\core-1.13.1\AndroidManifest.xml:26:22-94
 16
 17    <application
-17-->C:\Users\scarl\Downloads\Nueva carpeta\SIFUNCIONA_RPS_winner_on_watch_v2\SIFUNCIONA_RPS_winner_on_watch_final\SIFUNCIONA_RPS_final_clean_v2_fixWatchSend\mobile\src\main\AndroidManifest.xml:4:5-17:19
+17-->C:\Users\scarl\Downloads\RPS_Wear_Bluetooth_Real\ROCKPAPERSICCSORSWEARABLEANDROID\mobile\src\main\AndroidManifest.xml:4:5-17:19
 18        android:allowBackup="true"
-18-->C:\Users\scarl\Downloads\Nueva carpeta\SIFUNCIONA_RPS_winner_on_watch_v2\SIFUNCIONA_RPS_winner_on_watch_final\SIFUNCIONA_RPS_final_clean_v2_fixWatchSend\mobile\src\main\AndroidManifest.xml:5:9-35
+18-->C:\Users\scarl\Downloads\RPS_Wear_Bluetooth_Real\ROCKPAPERSICCSORSWEARABLEANDROID\mobile\src\main\AndroidManifest.xml:5:9-35
 19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
 19-->[androidx.core:core:1.13.1] C:\Users\scarl\.gradle\caches\9.0-milestone-1\transforms\43b9c409b055caeab78fdd2d5963c277\transformed\core-1.13.1\AndroidManifest.xml:28:18-86
 20        android:debuggable="true"
 21        android:extractNativeLibs="false"
 22        android:label="RPS Phone"
-22-->C:\Users\scarl\Downloads\Nueva carpeta\SIFUNCIONA_RPS_winner_on_watch_v2\SIFUNCIONA_RPS_winner_on_watch_final\SIFUNCIONA_RPS_final_clean_v2_fixWatchSend\mobile\src\main\AndroidManifest.xml:6:9-34
+22-->C:\Users\scarl\Downloads\RPS_Wear_Bluetooth_Real\ROCKPAPERSICCSORSWEARABLEANDROID\mobile\src\main\AndroidManifest.xml:6:9-34
 23        android:supportsRtl="true"
-23-->C:\Users\scarl\Downloads\Nueva carpeta\SIFUNCIONA_RPS_winner_on_watch_v2\SIFUNCIONA_RPS_winner_on_watch_final\SIFUNCIONA_RPS_final_clean_v2_fixWatchSend\mobile\src\main\AndroidManifest.xml:7:9-35
+23-->C:\Users\scarl\Downloads\RPS_Wear_Bluetooth_Real\ROCKPAPERSICCSORSWEARABLEANDROID\mobile\src\main\AndroidManifest.xml:7:9-35
 24        android:testOnly="true"
 25        android:theme="@style/Theme.Material3.DayNight.NoActionBar" >
-25-->C:\Users\scarl\Downloads\Nueva carpeta\SIFUNCIONA_RPS_winner_on_watch_v2\SIFUNCIONA_RPS_winner_on_watch_final\SIFUNCIONA_RPS_final_clean_v2_fixWatchSend\mobile\src\main\AndroidManifest.xml:8:9-68
+25-->C:\Users\scarl\Downloads\RPS_Wear_Bluetooth_Real\ROCKPAPERSICCSORSWEARABLEANDROID\mobile\src\main\AndroidManifest.xml:8:9-68
 26        <activity
-26-->C:\Users\scarl\Downloads\Nueva carpeta\SIFUNCIONA_RPS_winner_on_watch_v2\SIFUNCIONA_RPS_winner_on_watch_final\SIFUNCIONA_RPS_final_clean_v2_fixWatchSend\mobile\src\main\AndroidManifest.xml:9:9-14:20
+26-->C:\Users\scarl\Downloads\RPS_Wear_Bluetooth_Real\ROCKPAPERSICCSORSWEARABLEANDROID\mobile\src\main\AndroidManifest.xml:9:9-14:20
 27            android:name="com.example.wearcontroldemo.MainActivity"
-27-->C:\Users\scarl\Downloads\Nueva carpeta\SIFUNCIONA_RPS_winner_on_watch_v2\SIFUNCIONA_RPS_winner_on_watch_final\SIFUNCIONA_RPS_final_clean_v2_fixWatchSend\mobile\src\main\AndroidManifest.xml:9:19-47
+27-->C:\Users\scarl\Downloads\RPS_Wear_Bluetooth_Real\ROCKPAPERSICCSORSWEARABLEANDROID\mobile\src\main\AndroidManifest.xml:9:19-47
 28            android:exported="true" >
-28-->C:\Users\scarl\Downloads\Nueva carpeta\SIFUNCIONA_RPS_winner_on_watch_v2\SIFUNCIONA_RPS_winner_on_watch_final\SIFUNCIONA_RPS_final_clean_v2_fixWatchSend\mobile\src\main\AndroidManifest.xml:9:48-71
+28-->C:\Users\scarl\Downloads\RPS_Wear_Bluetooth_Real\ROCKPAPERSICCSORSWEARABLEANDROID\mobile\src\main\AndroidManifest.xml:9:48-71
 29            <intent-filter>
-29-->C:\Users\scarl\Downloads\Nueva carpeta\SIFUNCIONA_RPS_winner_on_watch_v2\SIFUNCIONA_RPS_winner_on_watch_final\SIFUNCIONA_RPS_final_clean_v2_fixWatchSend\mobile\src\main\AndroidManifest.xml:10:13-13:29
+29-->C:\Users\scarl\Downloads\RPS_Wear_Bluetooth_Real\ROCKPAPERSICCSORSWEARABLEANDROID\mobile\src\main\AndroidManifest.xml:10:13-13:29
 30                <action android:name="android.intent.action.MAIN" />
-30-->C:\Users\scarl\Downloads\Nueva carpeta\SIFUNCIONA_RPS_winner_on_watch_v2\SIFUNCIONA_RPS_winner_on_watch_final\SIFUNCIONA_RPS_final_clean_v2_fixWatchSend\mobile\src\main\AndroidManifest.xml:11:17-69
-30-->C:\Users\scarl\Downloads\Nueva carpeta\SIFUNCIONA_RPS_winner_on_watch_v2\SIFUNCIONA_RPS_winner_on_watch_final\SIFUNCIONA_RPS_final_clean_v2_fixWatchSend\mobile\src\main\AndroidManifest.xml:11:25-66
+30-->C:\Users\scarl\Downloads\RPS_Wear_Bluetooth_Real\ROCKPAPERSICCSORSWEARABLEANDROID\mobile\src\main\AndroidManifest.xml:11:17-69
+30-->C:\Users\scarl\Downloads\RPS_Wear_Bluetooth_Real\ROCKPAPERSICCSORSWEARABLEANDROID\mobile\src\main\AndroidManifest.xml:11:25-66
 31
 32                <category android:name="android.intent.category.LAUNCHER" />
-32-->C:\Users\scarl\Downloads\Nueva carpeta\SIFUNCIONA_RPS_winner_on_watch_v2\SIFUNCIONA_RPS_winner_on_watch_final\SIFUNCIONA_RPS_final_clean_v2_fixWatchSend\mobile\src\main\AndroidManifest.xml:12:17-77
-32-->C:\Users\scarl\Downloads\Nueva carpeta\SIFUNCIONA_RPS_winner_on_watch_v2\SIFUNCIONA_RPS_winner_on_watch_final\SIFUNCIONA_RPS_final_clean_v2_fixWatchSend\mobile\src\main\AndroidManifest.xml:12:27-74
+32-->C:\Users\scarl\Downloads\RPS_Wear_Bluetooth_Real\ROCKPAPERSICCSORSWEARABLEANDROID\mobile\src\main\AndroidManifest.xml:12:17-77
+32-->C:\Users\scarl\Downloads\RPS_Wear_Bluetooth_Real\ROCKPAPERSICCSORSWEARABLEANDROID\mobile\src\main\AndroidManifest.xml:12:27-74
 33            </intent-filter>
 34        </activity>
 35        <activity

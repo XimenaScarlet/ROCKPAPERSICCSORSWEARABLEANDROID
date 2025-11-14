@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- ===== MENÚ INICIAL (pantalla tipo mockup bonito pastel) ===== -->
+    <!-- ===== MENÚ INICIAL ===== -->
     <LinearLayout
         android:id="@+id/menuLayout"
         android:orientation="vertical"
@@ -50,29 +50,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:weightSum="2"
             android:padding="8dp">
 
             <Button
                 android:id="@+id/btnPlay"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="54dp"
-                android:layout_weight="1"
                 android:text="▶ Play"
-                android:textAllCaps="false"
-                android:background="@drawable/rounded_button"
-                android:textColor="#333333" />
-
-            <Space
-                android:layout_width="16dp"
-                android:layout_height="match_parent" />
-
-            <Button
-                android:id="@+id/btnSettings"
-                android:layout_width="0dp"
-                android:layout_height="54dp"
-                android:layout_weight="1"
-                android:text="⚙ Configuración"
                 android:textAllCaps="false"
                 android:background="@drawable/rounded_button"
                 android:textColor="#333333" />
@@ -215,47 +199,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="12dp"
             android:visibility="gone"/>
-    </LinearLayout>
-
-    <!-- ===== CONFIGURACIÓN ===== -->
-    <LinearLayout
-        android:id="@+id/settingsLayout"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:padding="16dp"
-        android:visibility="gone"
-        android:background="#1C1C1C">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Configuración"
-            android:textColor="@android:color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:layout_marginBottom="24dp" />
-
-        <Button
-            android:id="@+id/btnTheme"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:text="Cambiar tema"
-            android:textAllCaps="false"
-            android:background="@drawable/rounded_button"
-            android:textColor="#333333"
-            android:layout_marginBottom="16dp"/>
-
-        <Button
-            android:id="@+id/btnBackSettings"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
-            android:text="Volver"
-            android:textAllCaps="false"
-            android:background="@drawable/rounded_button"
-            android:textColor="#333333"/>
     </LinearLayout>
 
 </LinearLayout>
